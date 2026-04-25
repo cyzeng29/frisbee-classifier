@@ -35,7 +35,7 @@ predict_play(f'/content/Frisbee-2/test/images/{list(uploaded.keys())[0]}')
 
 | Description | Link |
 |-------------|------|
-| Demo Video | _Coming soon_ |
+| Demo Video | (https://youtu.be/USpsTr_W6iE)|
 | Presentation | _Coming soon_ |
 
 ---
