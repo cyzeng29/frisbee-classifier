@@ -102,9 +102,14 @@ gdown.download(f"https://drive.google.com/uc?id={file_id}", "frisbee_dotmaps_cnn
 | Self-Made CNN | 0.8804 | 71.74% | 74.25% | 71.74% | 71.49% | 261,465 | 67.99 | 0.53 | 11.52 |
 | EfficientNet-B0 Transfer Learning | 1.0917 | 58.70% | 64.78% | 58.70% | 59.11% | 4,016,515 | 15.61 | 0.58 | 12.66 |
 
-- The ResNet18 classifier improved steadily from 16% to 92% validation accuracy over 30 epochs, with no signs of overfitting according to its high validation accuracy
-- As random chance for 7 classes is ~14%, the final result is a strong outcome given the dataset size.
-- For future improvements, add complex temporal information from video sequences, or train different CNN models better at recognizing spatial relationships.
+![Model Parameters](assets/Model_Parameters.png)
+
+- ResNet18 achieves the best accuracy (91.30%) while having a middle parameter count (~11M). It is the most efficient in terms of accuracy-per-parameter.
+- The Self-Made CNN has the most parameters (~26M) and the largest model size (~100MB) by far, yet delivers the worst accuracy-to-size ratio at only 71.74% accuracy.
+- EfficientNet-B0, despite being designed for efficiency, performs the worst here (58.70%), possibly due to underfitting, insufficient fine-tuning, etc.
+- The Self-Made CNN being ~100MB vs ResNet18's ~2.73MB means that it's ~36x larger but ~20% less accurate. This suggests the custom architecture is poorly optimized and likely overparameterized.
+- Conclusion: ResNet18 Transfer Learning has the smallest footprint, fastest training convergence, and highest accuracy. The Self-Made CNN needs architectural restructuring for better performance, and EfficientNet-B0 likely needs more fine-tuning.
+- For future improvements, add complex temporal information from video sequences, or train different CNN models better at recognizing spatial relationships, or limiting amount of bounded teammates and opponents to mimic a real game.
 
 ---
 
