@@ -6,6 +6,8 @@ In the fast-paced sport of ultimate frisbee, an effective way to create progress
 
 This project builds an end-to-end pipeline for automatically classifying Ultimate Frisbee plays from game footage images. A custom-trained YOLOv8 model first detects players and the disc in each frame, assigning them to three categories: teammates (green), opponents (red), and the frisbee (orange). Those detections are then converted into simplified "dot maps" — white 640×640 canvases where each player and disc is represented by a single colored dot. Finally, a fine-tuned ResNet18 classifier is trained on these dot maps to recognize seven distinct play types: 32Twist, Dominator, Dump, Flash, Go, HoStack, and Wheel. The result is a system where you can feed in a raw game image and receive a predicted play classification along with a three-step visual breakdown of how the prediction was made.
 
+![Sample Classification](assets/Sample_Classification.png)
+
 ---
 
 ## Quick Start
