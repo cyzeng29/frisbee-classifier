@@ -25,15 +25,27 @@ Go to [colab.research.google.com](https://colab.research.google.com), click **Fi
 
 In Colab: **Runtime → Change runtime type (Tested on T4 GPU)**
 
-### 4. Mount Google Drive
-
-Run the Drive mount cell and authorize when prompted to save best weights from model training:
-```python
-from google.colab import drive
-drive.mount('/content/drive')
+### 4. Install dependecies
+```bash
+!pip install ultralytics
+!pip install roboflow
 ```
+All other dependencies (PyTorch, torchvision, OpenCV, matplotlib) come pre-installed in Colab.
 
-### 5. Upload Required Files to Google Drive
+### 5. Upload the public Google Drive files with the following cells:
+
+```
+from ultralytics import YOLO
+import gdown
+
+file_id = "1s-m6kymo4Ob5_sulFJ_2TiG-gZ-NlkWT"
+gdown.download(f"https://drive.google.com/uc?id={file_id}", "best.pt", quiet=False)
+
+model = YOLO('best.pt')
+
+file_id = "1R_dRzF-X1R4dZm2u5cSfza6KiootRz-1"
+gdown.download(f"https://drive.google.com/uc?id={file_id}", "frisbee_dotmaps_cnn_resnet18.pth", quiet=False)
+```
 
 Place the following in your Drive before running the notebook:
 
@@ -46,33 +58,22 @@ MyDrive/
 └── frisbee_dotmaps_cnn_resnet18.pth  ← saved classifier
 ```
 
-### 6. Upload the Dataset to Colab
+### 7. Run Up to the Play Predicting Function (For Testing Purposes)
 
-Download the Frisbee-2 dataset from Roboflow and upload it to Colab at:
+Run up to this cell:
 ```
-/content/Frisbee-2/
-├── train/images/
-├── valid/images/
-└── test/images/
-```
-
-You can do this via the Colab file browser (left sidebar) or with:
-```python
 from google.colab import files
-files.upload()
+uploaded = files.upload()
+
+import shutil
+for filename in uploaded.keys():
+    shutil.move(filename, f'/content/Frisbee-2/test/images/{filename}')
+    print(f"Moved {filename}")
+
+predict_play(f'/content/Frisbee-2/test/images/{filename}')
 ```
 
-### 7. Install Dependencies
-
-The first couple cells handle this automatically:
-```bash
-!pip install ultralytics
-!pip install roboflow
-```
-
-All other dependencies (PyTorch, torchvision, OpenCV, matplotlib) come pre-installed in Colab.
-
-### 8. Run All Cells in Order
+### 8. Run All Cells in Order (For Full Training Only)
 
 Go to **Runtime → Run all**, or run each cell sequentially. The self-built CNN is optional if the user wants to compare the ResNet and CNN models together.
 
@@ -96,4 +97,4 @@ You will need to adjust all file paths (remove `/content/drive/MyDrive/` prefixe
 Run the rename + merge cell before loading the dataset. It consolidates all numbered variants (e.g. `HoStack3`, `Ho`) into the 7 base class folders, which was previously mismatched when loaded from Roboflow.
 
 **Folder Management**
-Users will also need the frisbee_dotmaps/ folder in Drive if they want to run the dotmap to CNN section.
+Users will need the correct file path for frisbee_mode/ and frisbee_dotmaps/ folder in Drive if they want to run the models.
