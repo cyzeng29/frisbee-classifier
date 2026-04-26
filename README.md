@@ -17,7 +17,7 @@ This project builds an end-to-end pipeline for automatically classifying Ultimat
 
 2. **For testing existing trained models:** Run cells in order, as the notebook is fully sequential.
    - **1:** Install dependencies (`ultralytics` and `roboflow`) <- Have your roboflow API key ready **([Data README](data/data_README.md))**
-   - **2:** Import best weights from drive for YOLOv8 fine-tuned model and ResNet18/CNN model **([Models README](models/model_README.md))**
+   - **2:** Import best weights from drive for YOLOv8 fine-tuned model and ResNet18/CNN/EfficientNet-B0 model **([Models README](models/model_README.md))**
    - **3:** Define the classifier and load weights
    - **4:** Define the predict_play function for bounding boxes to dot map to classification process
    - **5:** Run `predict_play('path/to/image.jpg')` on any new image
@@ -61,7 +61,7 @@ dataset = version.download("yolov8")
 ```
 
 ## Models
-To import the weights for the models, import using the installed packaged gdown and upload from a public google drive:
+To import the weights for the models, import using the installed packaged gdown and upload from a public google drive (CNN is defaulted to ResNet18):
 ```
 import gdown
 
