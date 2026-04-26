@@ -35,7 +35,7 @@ Used for dot map generation and image processing.
 
 ## AI Assistance
 
-This project was developed with assistance from **Claude (Anthropic)**, an AI assistant.
+This project was developed with assistance from **Claude (Anthropic)**, an AI assistant as well as Codex from OpenAI.
 
 AI was used to help with:
 - Debugging CUDA errors and model loading issues
