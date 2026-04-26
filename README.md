@@ -35,14 +35,14 @@ This project builds an end-to-end pipeline for automatically classifying Ultimat
 5. To classify a new image:
 ```python
 from google.colab import files
+import os
+
 uploaded = files.upload()
 
-import shutil
 for filename in uploaded.keys():
-    shutil.move(filename, f'/content/Frisbee-2/test/images/{filename}')
-    print(f"Moved {filename}")
-
-predict_play(f'/content/Frisbee-2/test/images/{filename}')
+    image_path = os.path.abspath(filename)
+    print(f"Classifying {image_path}")
+    predict_play(image_path)
 ```
 
 ---
@@ -94,17 +94,13 @@ gdown.download(f"https://drive.google.com/uc?id={file_id}", "frisbee_dotmaps_cnn
 - Recall hits ~87%, meaning it's catching most of the actual players/discs in the image.
 - Other metrics show ll three losses (box, cls, dfl) drop cleanly for both train and val with no divergence, strong detection performance, and relatively robust bounding box accuracy.
 
-### ResNet18 Model Performance
+### Comparing CNN Model Performance
 
-| Epoch | Train Loss | Train Acc | Val Loss | Val Acc |
-|-------|------------|-----------|----------|---------|
-| 1 | 2.0090 | 18.06% | 1.9932 | 16.15% |
-| 5 | 1.4463 | 47.14% | 1.4997 | 36.15% |
-| 10 | 1.1449 | 60.13% | 1.2528 | 40.00% |
-| 15 | 0.8126 | 74.89% | 1.0093 | 60.77% |
-| 20 | 0.6156 | 81.50% | 0.6989 | 77.69% |
-| 25 | 0.4182 | 88.11% | 0.5024 | 85.38% |
-| 30 | 0.3373 | 90.75% | 0.3387 | 92.31% |
+| Model | Test Loss | Accuracy | Precision | Recall | F1 Score | Parameters | Model Size (MB) | Total Eval Time (sec) | Avg Inference Time/Image (ms) |
+|-------|-----------|----------|-----------|--------|----------|------------|-----------------|----------------------|-------------------------------|
+| ResNet18 Transfer Learning | 0.4229 | 91.30% | 91.81% | 91.30% | 91.16% | 11,181,034 | 2.73 | 0.58 | 12.65 |
+| Self-Made CNN | 0.8804 | 71.74% | 74.25% | 71.74% | 71.49% | 261,465 | 67.99 | 0.53 | 11.52 |
+| EfficientNet-B0 Transfer Learning | 1.0917 | 58.70% | 64.78% | 58.70% | 59.11% | 4,016,515 | 15.61 | 0.58 | 12.66 |
 
 - The ResNet18 classifier improved steadily from 16% to 92% validation accuracy over 30 epochs, with no signs of overfitting according to its high validation accuracy
 - As random chance for 7 classes is ~14%, the final result is a strong outcome given the dataset size.
