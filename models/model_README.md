@@ -11,4 +11,4 @@ file_id = "1R_dRzF-X1R4dZm2u5cSfza6KiootRz-1"
 gdown.download(f"https://drive.google.com/uc?id={file_id}", "frisbee_dotmaps_cnn_resnet18.pth", quiet=False)
 ```
 
-The weights were calculated using the same training process listed in [FrisbeeClassification.ipynb](notebooks/FrisbeeClassification.ipynb), and were saved by mounting Google Drive and saving the weights to the specified folder.
+The weights were calculated using the same training process listed in [FrisbeeClassification.ipynb](../notebooks/FrisbeeClassification.ipynb), and were saved by mounting Google Drive and saving the weights to the specified folder.
