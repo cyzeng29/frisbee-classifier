@@ -16,8 +16,8 @@ This project builds an end-to-end pipeline for automatically classifying Ultimat
    [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
 
 2. **For testing existing trained models:** Run cells in order, as the notebook is fully sequential.
-   - **1:** Install dependencies (`ultralytics` and `roboflow`) <- Have your roboflow API key ready
-   - **2:** Import best weights from drive for YOLOv8 fine-tuned model and ResNet18/CNN model
+   - **1:** Install dependencies (`ultralytics` and `roboflow`) <- Have your roboflow API key ready **([Data README](data/data_README.md))**
+   - **2:** Import best weights from drive for YOLOv8 fine-tuned model and ResNet18/CNN model **([Models README](models/model_README.md))**
    - **3:** Define the classifier and load weights
    - **4:** Define the predict_play function for bounding boxes to dot map to classification process
    - **5:** Run `predict_play('path/to/image.jpg')` on any new image
