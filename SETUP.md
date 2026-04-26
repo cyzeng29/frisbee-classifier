@@ -98,3 +98,10 @@ Run the rename + merge cell before loading the dataset. It consolidates all numb
 
 **Folder Management**
 Users will need the correct file path for frisbee_mode/ and frisbee_dotmaps/ folder in Drive if they want to run the models.
+
+**Mounting Google Drive**
+When mounting the google drive, ensure that the specified folder and file path is accurate.
+```
+from google.colab import drive
+drive.mount('/content/drive')
+```
