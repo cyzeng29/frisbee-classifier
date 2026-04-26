@@ -56,7 +56,15 @@ predict_play(f'/content/Frisbee-2/test/images/{filename}')
 
 ## Evaluation
 
-### Model Performance
+### Yolov8 Model Performance
+
+![Confusion Matrix](assets/confusion_matrix_normalized.png)
+
+- High Accuracy Scores in Teammate (0.95) and Opponent (0.94), which are detected near perfectly.
+- Frisbee (0.72) is decent but gets confused with background (0.18), which makes sense since the frisbee is smaller and therefore more difficult to detect.
+- The background is the weak spot, as 39% gets misclassified as Opponent and 39% as Teammate, meaning YOLO sometimes detects people in the background as players, which is understandable due to sidelines.
+
+### ResNet18 Model Performance
 
 | Epoch | Train Loss | Train Acc | Val Loss | Val Acc |
 |-------|------------|-----------|----------|---------|
@@ -67,8 +75,6 @@ predict_play(f'/content/Frisbee-2/test/images/{filename}')
 | 20 | 0.6156 | 81.50% | 0.6989 | 77.69% |
 | 25 | 0.4182 | 88.11% | 0.5024 | 85.38% |
 | 30 | 0.3373 | 90.75% | 0.3387 | 92.31% |
-
-### Key Findings
 
 - The ResNet18 classifier improved steadily from 16% to 92% validation accuracy over 30 epochs, with no signs of overfitting according to its high validation accuracy
 - As random chance for 7 classes is ~14%, the final result is a strong outcome given the dataset size.
