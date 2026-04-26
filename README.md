@@ -58,11 +58,14 @@ predict_play(f'/content/Frisbee-2/test/images/{filename}')
 
 ### Yolov8 Model Performance
 
-![Confusion Matrix](assets/confusion_matrix_normalized.png)
+![Confusion Matrix](assets/confusion_matrix_normalized.png) ![Training Results](assets/results.png)
 
 - High Accuracy Scores in Teammate (0.95) and Opponent (0.94), which are detected near perfectly.
 - Frisbee (0.72) is decent but gets confused with background (0.18), which makes sense since the frisbee is smaller and therefore more difficult to detect.
 - The background is the weak spot, as 39% gets misclassified as Opponent and 39% as Teammate, meaning YOLO sometimes detects people in the background as players, which is understandable due to sidelines.
+- Precision hits ~85%, meaning when YOLO says something is there, it's correct 85% of the time.
+- Recall hits ~87%, meaning it's catching most of the actual players/discs in the image.
+- Other metrics show ll three losses (box, cls, dfl) drop cleanly for both train and val with no divergence, strong detection performance, and relatively robust bounding box accuracy.
 
 ### ResNet18 Model Performance
 
