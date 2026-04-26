@@ -76,8 +76,8 @@ gdown.download(f"https://drive.google.com/uc?id={file_id}", "frisbee_dotmaps_cnn
 
 | Description | Link |
 |-------------|------|
-| Demo Video | (https://youtu.be/USpsTr_W6iE)|
-| Technical Walkthrough | _Coming soon_ |
+| Demo Video | https://youtu.be/USpsTr_W6iE|
+| Technical Walkthrough | https://youtu.be/BeGsXPefuNs |
 
 ---
 
